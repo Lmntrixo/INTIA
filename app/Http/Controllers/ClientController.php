@@ -11,7 +11,7 @@ class ClientController extends Controller
      * Display a listing of the resource.
      */
 
-
+    //accueil de l'application
      public function accueil()
      {
         return view('accueil');
@@ -26,7 +26,7 @@ class ClientController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create()//creer un client
     {
         return view('create');
     }
@@ -34,7 +34,7 @@ class ClientController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request)// enregistrer en base de donnees
     {
         $data=$request->all();
         $client=new Client;
@@ -58,7 +58,7 @@ class ClientController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Client $client, String $id)
+    public function edit(Client $client, String $id)//afficher la page de modification
     {
         $Clients=Client::findOrFail($id);
         return view('edit',compact('Clients'));
@@ -67,7 +67,7 @@ class ClientController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Client $client , string $id)
+    public function update(Request $request, Client $client , string $id)// mettre a jour les informations d'un client
     {
         $Client= Client::find($request->id);
         $Client->name = $request->get('name');
@@ -76,16 +76,16 @@ class ClientController extends Controller
         $Client->status=$request->get('status');
         $Client->montant_assurance= $request->get('montant_assurance');
         $Client->update();
-        return redirect()->route('index')->with('success', 'informations mis a jour');
+        return redirect()->route('index');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Client $client, string  $id)
+    public function destroy(Client $client, string  $id)//supprimer un clients
     {
         $clients= Client::FindOrFail($id);
         $clients->delete();
-        return redirect()->route('index')->with('success', 'informations supprimmee' );
+        return redirect()->route('index');
     }
 }

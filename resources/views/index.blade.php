@@ -7,27 +7,27 @@
     <button><a href="{{'/client/create'}}" class="btn btn-primary">creer un client</a></button>
 
     <table class="" style="margin-left:500px ; ">
-        <thead style="margin-left:20px ; ">
+        <thead >
             <tr>
-                <th>Nom</th>
+                <th style=" width:60px">Nom</th>
                 <th>Prenom</th>
                 <th>ville</th>
                 <th>Montant Assurance</th>
                 <th>statut</th>
                      </thead>
-        <tbody>
+        <tbody >
 
             @foreach($Clients as $client)
 
-                <tr>
-                    <td>{{$client->name}}</td>
-                    <td>{{$client->surname}}</td>
-                    <td>{{$client->ville}}</td>
+                <tr style="margin-top:100px">
+                    <td >{{$client->name}}</td>
+                    <td style="margin-left:20px ; ">{{$client->surname}}</td>
+                    <td style="margin-left:20px ; ">{{$client->ville}}</td>
                     <td>{{$client->montant_assurance}}</td>
                     <td>{{$client->status}}</td>
                     <td>
                         <button><a href="{{ route('modifier', $client->id) }}" class="">modifier</a></button>
-
+                        
                         <form action="{{route('delete', $client->id)}}" method="POST" style="display:inline">
 
                             @csrf
